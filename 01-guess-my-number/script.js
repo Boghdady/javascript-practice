@@ -5,9 +5,10 @@ let scoreElement = document.querySelector('.score');
 let numberElement = document.querySelector('.number');
 let bodyElement = document.querySelector('body');
 let guessElement = document.querySelector('.guess');
+let highscoreElement = document.querySelector('.highscore');
 
 const secretNumber = Math.trunc(Math.random() * 20 + 1);
-
+let highscore = 0;
 
 
 const checkScoreNumber = () => {
@@ -28,6 +29,14 @@ const correctGuess = (guess) => {
   numberElement.style.width = '30rem';
 }
 
+const calcHighscore = () => {
+  const score = Number(scoreElement.textContent);
+  if (score > highscore) {
+    highscore = score;
+    highscoreElement.textContent = highscore;
+  }
+}
+
 
 document.querySelector('.check').addEventListener('click', () => {
   const guess = Number(document.querySelector('.guess')
@@ -39,6 +48,7 @@ document.querySelector('.check').addEventListener('click', () => {
 
   } else if (guess === secretNumber) {
     correctGuess(guess);
+    calcHighscore();
 
   } else if (guess > secretNumber) {
     messageElement.textContent = 'Too High';
@@ -55,7 +65,7 @@ document.querySelector('.check').addEventListener('click', () => {
 // Reset game
 const resetGame = () => {
   numberElement.textContent = '?';
-  scoreElement.textContent = "0";
+  scoreElement.textContent = "20";
   guessElement.value = '';
   messageElement.textContent = 'Start Guessing ..';
   bodyElement.style.backgroundColor = '#222';
