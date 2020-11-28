@@ -11,11 +11,13 @@ const secretNumber = Math.trunc(Math.random() * 20 + 1);
 let highscore = 0;
 
 
-const checkScoreNumber = () => {
+const checkScoreNumber = (guess) => {
   let scoreResult = Number(document.querySelector('.score').textContent);
   if (scoreResult > 1) {
     scoreResult--
     scoreElement.textContent = scoreResult;
+    guess > secretNumber ? messageElement.textContent = 'Too High' :
+      messageElement.textContent = 'too Low';
     return;
   }
   scoreElement.textContent = "Game Over";
@@ -38,29 +40,23 @@ const calcHighscore = () => {
 }
 
 
-document.querySelector('.check').addEventListener('click', () => {
-  const guess = Number(document.querySelector('.guess')
-    .value);
-  console.log(secretNumber)
+document.querySelector('.check')
+  .addEventListener('click', () => {
+    const guess = Number(document.querySelector('.guess')
+      .value);
+    console.log(secretNumber)
 
-  if (!guess) {
-    messageElement.textContent = 'No Number found';
-
-  } else if (guess === secretNumber) {
-    correctGuess(guess);
-    calcHighscore();
-
-  } else if (guess > secretNumber) {
-    messageElement.textContent = 'Too High';
-    checkScoreNumber();
-
-  } else if (guess < secretNumber) {
-    messageElement.textContent = 'too Low';
-    checkScoreNumber();
-  } else {
-    number = guess;
-  }
-})
+    if (!guess) {
+      messageElement.textContent = 'No Number found';
+    } else if (guess === secretNumber) {
+      correctGuess(guess);
+      calcHighscore();
+    } else if (guess !== secretNumber) {
+      checkScoreNumber(guess);
+    } else {
+      number = guess;
+    }
+  });
 
 // Reset game
 const resetGame = () => {
@@ -72,6 +68,7 @@ const resetGame = () => {
   numberElement.style.width = '15rem'
 }
 
-document.querySelector('.again').addEventListener('click', function () {
-  resetGame();
-});
+document.querySelector('.again')
+  .addEventListener('click', function () {
+    resetGame();
+  });
