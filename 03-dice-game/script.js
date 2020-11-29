@@ -16,14 +16,29 @@ const btnHold = document.querySelector('.btn--hold');
 // Initial state
 let currentScore = 0;
 const scores = [0, 0]; // Initial scores for player 0 & 1
-let activePlayer = 0; // Initial active player is player number 0
+let activePlayer = 0; // Initial active player is player number0
+let gameIsFinished = false;
+
 score0Element.textContent = 0;
 score1Element.textContent = 0;
 diceElement.classList.add(['hidden']);
 
+const switchPlayer = () => {
+  // Make current score for active user = 0, reset currentScore value
+  document.getElementById(`current--${activePlayer}`)
+    .textContent = 0;
+  currentScore = 0;
+  // Switch player
+  activePlayer = activePlayer === 0 ? 1 : 0;
+  // Change visual ui for active and inactive player
+  // toggle method remove class if exist and add it if not exist
+  player0Element.classList.toggle('player--active');
+  player1Element.classList.toggle('player--active');
+}
 
 // Rolling dice functionality
 btnRoll.addEventListener('click', function () {
+  if (gameIsFinished) return;
   // 1) Generate a random dice roll
   const diceNumber = Math.trunc(Math.random() * 6) + 1;
 
@@ -38,15 +53,28 @@ btnRoll.addEventListener('click', function () {
     document.getElementById(`current--${activePlayer}`)
       .textContent = currentScore;
   } else {
-    // Make current score for active user = 0, reset currentScore value
-    document.getElementById(`current--${activePlayer}`)
-      .textContent = 0;
-    currentScore = 0;
-    // Switch player
-    activePlayer = activePlayer === 0 ? 1 : 0;
-    // Change visual ui for active and inactive player
-    // toggle method remove class if exist and add it if not exist
-    player0Element.classList.toggle('player--active');
-    player1Element.classList.toggle('player--active');
+    switchPlayer();
+  }
+});
+
+// Hold current score
+btnHold.addEventListener('click', function () {
+  if (gameIsFinished) return;
+  // 1) add current score to active player score
+  scores[activePlayer] += currentScore;
+  document.getElementById(`score--${activePlayer}`)
+    .textContent = scores[activePlayer];
+  // 2) check if active player score > 100 if true player won
+  if (scores[activePlayer] > 20) {
+    gameIsFinished = true;
+    diceElement.classList.add(['hidden']);
+
+    document.querySelector(`.player--${activePlayer}`)
+      .classList.add(['player--winner']);
+    document.querySelector(`.player--${activePlayer}`)
+      .classList.remove(['player--active']);
+  } else {
+    // if less than 100 switch player
+    switchPlayer();
   }
 });
