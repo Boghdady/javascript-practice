@@ -1,6 +1,8 @@
 'use strict';
 
 // Select elements
+const player0Element = document.querySelector('.player--0');
+const player1Element = document.querySelector('.player--1');
 const score0Element = document.querySelector('#score--0');
 const score1Element = document.getElementById('score--1');
 const current0Element = document.getElementById('current--0');
@@ -13,6 +15,8 @@ const btnHold = document.querySelector('.btn--hold');
 
 // Initial state
 let currentScore = 0;
+const scores = [0, 0]; // Initial scores for player 0 & 1
+let activePlayer = 0; // Initial active player is player number 0
 score0Element.textContent = 0;
 score1Element.textContent = 0;
 diceElement.classList.add(['hidden']);
@@ -22,7 +26,6 @@ diceElement.classList.add(['hidden']);
 btnRoll.addEventListener('click', function () {
   // 1) Generate a random dice roll
   const diceNumber = Math.trunc(Math.random() * 6) + 1;
-  console.log(diceNumber);
 
   // 2) Diplay dice element
   diceElement.classList.remove(['hidden']);
@@ -32,6 +35,18 @@ btnRoll.addEventListener('click', function () {
   if (diceNumber !== 1) {
     // Add diceNumber to the current score
     currentScore += diceNumber;
-    current0Element.textContent = currentScore;
+    document.getElementById(`current--${activePlayer}`)
+      .textContent = currentScore;
+  } else {
+    // Make current score for active user = 0, reset currentScore value
+    document.getElementById(`current--${activePlayer}`)
+      .textContent = 0;
+    currentScore = 0;
+    // Switch player
+    activePlayer = activePlayer === 0 ? 1 : 0;
+    // Change visual ui for active and inactive player
+    // toggle method remove class if exist and add it if not exist
+    player0Element.classList.toggle('player--active');
+    player1Element.classList.toggle('player--active');
   }
 });
