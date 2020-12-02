@@ -21,3 +21,22 @@ currentAddress.city = "Berlin";
 
 console.log("Old address: ", oldAddress);
 console.log("Current address", currentAddress);
+
+// 3) Copying
+
+const car = {
+  color: "red",
+  model: "BMW",
+  cd: ['radio', 'dvd']
+}
+
+// Object.assign() not work with inner object (object inside object)
+const copyingCar = Object.assign({}, car);
+
+copyingCar.color = "Yello";
+
+// Will affect in the main object "car" because Object.assign() not work with inner object (object inside object)
+copyingCar.cd.push("tv");
+
+console.log(car);
+console.log(copyingCar);
