@@ -22,8 +22,7 @@ currentAddress.city = "Berlin";
 console.log("Old address: ", oldAddress);
 console.log("Current address", currentAddress);
 
-// 3) Copying
-
+// 3) Copying object "shallow clone not deeper clone"
 const car = {
   color: "red",
   model: "BMW",
