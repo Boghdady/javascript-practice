@@ -112,6 +112,7 @@ restaurant.orderDelivery({
 });
 
 // ------------------Spread Operators-------------------------//
+// Goal: 1) build new array , 2) path multiple variables to function params
 console.log("---------Spread Operators------------");
 
 // 1) Join 2 arrays or more
@@ -135,3 +136,38 @@ const copyRestuarant = {
   ...restaurant
 };
 console.log(copyRestuarant);
+
+
+// ------------------Rest Operators-------------------------//
+console.log("---------Rest Operators------------");
+
+// SPREAD: because of on right of "="
+const arrSp = [1, 2, ...[3, 4]];
+// REST: because of on right of "="
+const [firstEl, secondEl, ...others] = [20, 30, 40, 50];
+console.log(firstEl, secondEl, others)
+
+// 2) objects
+
+const {
+  fri,
+  ...otherDays
+} = restaurant.openingHours;
+console.log(fri, otherDays);
+
+// 3) funcation
+// REST
+function add(...nums) {
+  let sum = 0;
+  for (let i = 0; i < nums.length; i++) {
+    sum += nums[i];
+  }
+  console.log(sum);
+}
+
+add(1, 3, 4);
+add(1, 4, 6, 2);
+add(3, 5);
+const numsArr = [2, 4, 2, 5, 2, 56, 2];
+// SPREAD
+add(...numsArr);
