@@ -110,3 +110,28 @@ restaurant.orderDelivery({
   time: '2.00 pm',
   starterIndex: 2,
 });
+
+// ------------------Spread Operators-------------------------//
+console.log("---------Spread Operators------------");
+
+// 1) Join 2 arrays or more
+const fullMenu = [...restaurant.mainMenu, ...restaurant.starterMenu];
+console.log(fullMenu);
+
+// 2) Copy array
+const copyMenu = ["checken", ...fullMenu];
+console.log(copyMenu);
+
+// 3) Function args
+function sum(num1, num2) {
+  console.log(num1 + num2);
+}
+
+const numbers = [3, 4];
+sum(...numbers);
+
+// Copy object (shallow coping)
+const copyRestuarant = {
+  ...restaurant
+};
+console.log(copyRestuarant);
