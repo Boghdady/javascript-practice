@@ -171,3 +171,19 @@ add(3, 5);
 const numsArr = [2, 4, 2, 5, 2, 56, 2];
 // SPREAD
 add(...numsArr);
+
+// ------------------Rest Operators-------------------------//
+console.log("---------Circuiting------------");
+
+// 1) || Operator
+// Will return the first trully value if all is false will return the last false value
+console.log("---------OR------------");
+
+console.log(undefined || "" || 3);
+console.log("" || null || false || 0 || undefined);
+
+// 2) && Operators 
+// Will return the first false value, if all values are false will return the last false value
+console.log("---------&&------------");
+console.log(3 && true && null && 4);
+console.log(3 && true && 5);
