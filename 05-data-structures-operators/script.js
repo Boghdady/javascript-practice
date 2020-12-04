@@ -212,3 +212,42 @@ for (const item of menuArr) console.log(item);
 
 // Print index and value
 for (const [index, value] of menuArr.entries()) console.log(`${index +1} : ${value}`);
+
+// ------------------Chaining operator ".?"-----------------------//
+
+console.log("--Mix chainning operator with Nullish operator--");
+// "?." : if channing poroperty is not exist will retrun undefinded
+const openHour = restaurant.openingHours?.open ?? "close";
+
+console.log(openHour);
+
+// With arrays
+const usersArr = [{
+    name: "Ahmed",
+    email: "ahmed@example.com"
+  },
+  {
+    name: "mohamed",
+    email: "mohamed@example.com"
+  }
+];
+
+const firstUser = usersArr[0]?.name ?? "Not Exist";
+const thirdUser = usersArr[2]?.name ?? "Not Exist";
+
+console.log(firstUser);
+console.log(thirdUser);
+
+// With function
+const userObj = {
+  name: "Ahmed",
+  age: 30,
+  setAddress() {
+    return "ismalia";
+  }
+}
+
+const addr = userObj.setAddress?.() ?? "No Address s";
+const addr2 = userObj.setLocation?.() ?? "No Location";
+console.log(addr);
+console.log(addr2);
