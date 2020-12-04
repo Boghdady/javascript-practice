@@ -10,7 +10,8 @@ const restaurant = {
   order: function (starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]]
   },
-  orderDelivery: function ({
+  // es6 enhanced write function inside object literal
+  orderDelivery({
     time,
     starterIndex,
     mainIndex = 2
@@ -201,3 +202,13 @@ console.log(correctGuests);
 console.log("---------&&------------");
 console.log(3 && true && null && 4);
 console.log(3 && true && 5);
+
+// ------------------Arrays loops-------------------------//
+console.log("---------Arrays loops------------");
+// 1) for of loop
+const menuArr = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+for (const item of menuArr) console.log(item);
+
+// Print index and value
+for (const [index, value] of menuArr.entries()) console.log(`${index +1} : ${value}`);
