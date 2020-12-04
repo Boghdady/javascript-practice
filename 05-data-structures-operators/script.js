@@ -182,6 +182,20 @@ console.log("---------OR------------");
 console.log(undefined || "" || 3);
 console.log("" || null || false || 0 || undefined);
 
+
+
+
+console.log("---------Nullish Operator------------");
+// Special case (|| not good solution here)
+restaurant.numGuests = 0;
+const guests = restaurant.numGuests || 10;
+console.log(guests);
+
+// The best solution here is Nullish operators
+// Nullish : null and undefined (not 0 or '')
+const correctGuests = restaurant.numGuests ?? 10;
+console.log(correctGuests);
+
 // 2) && Operators 
 // Will return the first false value, if all values are false will return the last false value
 console.log("---------&&------------");
