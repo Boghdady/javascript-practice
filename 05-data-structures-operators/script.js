@@ -272,10 +272,8 @@ for (const key of Object.keys(userObject)) console.log(key);
 for (const value of Object.values(userObject)) console.log(value);
 
 // 3) Print Entires (key + value)
-for (const {
-    ent
-  } of Object.entries(userObject)) {
-  console.log(ent)
+for (const [key, value] of Object.entries(userObject)) {
+  console.log(key, value);
   // {["name", "ahmed"], ["age", 30]}
   // console.log(`My name is ${name}, my age is ${age} and I
   // live in ${country} in ${city} city in street ${street}`);
@@ -302,3 +300,28 @@ console.log(positions.has("HR"));
 
 // Looping at sets
 for (const p of positions) console.log(p);
+
+// ------------------Maps-------------------------//
+console.log("---------Maps------------");
+// Goal: Maps like object but the big difference is map can contain different keys type
+const stringKey = "name";
+const numberKey = 12;
+const boolKey = true;
+
+const rest = new Map();
+
+rest.set(stringKey, "Ahmed");
+rest.set(numberKey, {
+  name: "ahmed",
+  age: 20
+});
+rest.set(boolKey, ["a", "b", "c"]);
+
+// console.log(rest);
+// console.log(rest.get(stringKey));
+// console.log(rest.get(numberKey));
+// console.log(rest.get(boolKey));
+
+for (const item of rest) console.log(item)
+for (const item of rest.values()) console.log(item)
+for (const item of rest.keys()) console.log(item)
