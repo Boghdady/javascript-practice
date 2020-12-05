@@ -251,3 +251,54 @@ const addr = userObj.setAddress?.() ?? "No Address s";
 const addr2 = userObj.setLocation?.() ?? "No Location";
 console.log(addr);
 console.log(addr2);
+
+// ------------------Objects loops-------------------------//
+console.log("---------Objects loops------------");
+
+const userObject = {
+  name: "Ahmed",
+  age: 30,
+  address: {
+    country: "Egypt",
+    city: "ismailia",
+    street: "15B mazadat st"
+  }
+}
+
+// 1) Print keys
+for (const key of Object.keys(userObject)) console.log(key);
+
+// 2) Print values
+for (const value of Object.values(userObject)) console.log(value);
+
+// 3) Print Entires (key + value)
+for (const {
+    ent
+  } of Object.entries(userObject)) {
+  console.log(ent)
+  // {["name", "ahmed"], ["age", 30]}
+  // console.log(`My name is ${name}, my age is ${age} and I
+  // live in ${country} in ${city} city in street ${street}`);
+}
+
+
+// ------------------Set-------------------------//
+console.log("---------Sets------------");
+
+// Goal : Remove duplicate values in array
+const stuff = ["waiter", "waiter", "manager", "chef", "chef"];
+const positions = new Set(stuff);
+console.log(positions);
+
+// Convert sets to array (it's easy because set is iterable)
+console.log([...positions]);
+
+// Add elements & Remove elements
+positions.add("HR");
+positions.delete("manager");
+
+// has element
+console.log(positions.has("HR"));
+
+// Looping at sets
+for (const p of positions) console.log(p);
