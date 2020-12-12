@@ -336,3 +336,32 @@ console.log(companyName.includes('Index'));
 // startWith endsWith()
 console.log(companyName.startsWith('Index'));
 console.log(companyName.endsWith('Company'));
+
+// split()
+console.log(companyName.split(' '));
+// join()
+const companyNameArr = companyName.split(' ');
+console.log(companyNameArr.join(' '));
+console.log(companyNameArr.join(','));
+
+function captalizeName(name) {
+  let nameArr3 = [];
+  const nameArr2 = name.split(' ');
+  for (const n of nameArr2) {
+    nameArr3.push(n[0].toUpperCase() + n.slice(1));
+  }
+  return nameArr3.join(' ');
+}
+
+console.log(captalizeName('ahmed elsayed boghdady'));
+console.log(captalizeName('index group comapny'));
+
+function secureCreditCard(number) {
+  const str = String(number);
+  const lastFourDigits = str.slice(-4);
+  const secureNumber = lastFourDigits.padStart(str.length, '*');
+  console.log(secureNumber);
+}
+
+secureCreditCard(12345678912345);
+secureCreditCard('983957891-0890835879823');
