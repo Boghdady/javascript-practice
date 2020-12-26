@@ -36,9 +36,7 @@ console.log(flightNumber, passenger);
 // es5 supported with all brwosers
 
 // higher oredering function
-console.log(
-  '----------------------Higher ordering function-------------------------'
-);
+console.log('------------------Higher ordering function------------------');
 
 const high = () => {
   console.log('Hi');
@@ -57,3 +55,14 @@ const transform = (str, fn) => {
 };
 
 transform('Hello Index group', firstUpperWord);
+
+// function return function
+console.log('------------------function return function------------------');
+
+const greet = function (msg) {
+  return function (name) {
+    console.log(`${msg}: ${name}`);
+  };
+};
+
+greet('Hello')('Ahmed');
