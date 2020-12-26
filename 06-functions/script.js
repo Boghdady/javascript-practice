@@ -31,3 +31,29 @@ const checkIn = function (flightNum, passengerData) {
 // Object value changed
 checkIn(flightNumber, passenger);
 console.log(flightNumber, passenger);
+
+// babel convert es2015 and newer version to es5
+// es5 supported with all brwosers
+
+// higher oredering function
+console.log(
+  '----------------------Higher ordering function-------------------------'
+);
+
+const high = () => {
+  console.log('Hi');
+};
+
+// addEventListener is higher order function and high is a callback function
+document.body.addEventListener('click', high);
+
+const firstUpperWord = str => {
+  const [first, ...others] = str.split(' ');
+  return first.toUpperCase();
+};
+
+const transform = (str, fn) => {
+  console.log(fn(str));
+};
+
+transform('Hello Index group', firstUpperWord);
